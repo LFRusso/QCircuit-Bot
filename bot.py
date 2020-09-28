@@ -121,7 +121,7 @@ def run(update, context):
     count = parse_and_run(circ_str, fname)
     message=[]
     for state in count.keys():
-        message.append(f"{round(count[state]/100,2)}|{state}>")
+        message.append(f"√{round(count[state]/100,2)}|{state}>")
     message = ' + '.join(message)
 
     context.bot.sendPhoto(chat_id=update.effective_chat.id, photo=open(fname, 'rb'))
