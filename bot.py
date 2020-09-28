@@ -52,7 +52,7 @@ def gates(update, context):
 def example(update, context):
     examples = {
         'Bell State':
-            ['_H_o_M',
+            ['_H_o__M',
             '___CX_M'],
     }
 
