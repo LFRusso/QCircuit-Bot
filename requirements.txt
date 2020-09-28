@@ -1,0 +1,11 @@
+numpy==1.19.1
+oauthlib==3.1.0
+requests==2.24.0
+matplotlib==3.3.1
+qiskit==0.21.0
+qiskit-aer==0.6.1
+qiskit-aqua==0.7.5
+qiskit-ibmq-provider==0.9.0
+qiskit-ignis==0.4.0
+qiskit-terra==0.15.2
+python-telegram-bot==12.8
