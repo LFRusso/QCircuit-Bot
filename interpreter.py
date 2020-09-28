@@ -43,6 +43,10 @@ def parse_and_run(circ_str, fname):
             # Barrier
             elif (operation=='|'):
                 circuit.barrier(j)
+
+            # Identity
+            elif (operation=='i'):
+                circuit.iden(j)
             
             # Ctrl operations
             elif (operation=='C'):

@@ -40,7 +40,7 @@ def guide(update, context):
 
 def gates(update, context):
     message = """
-    Avaliable logic gates (https://en.wikipedia.org/wiki/Quantum_logic_gate):
+    Avaliable logic gates:
 
     X: NOT/Pauli-X
     Y: Pauli-Y
@@ -48,8 +48,11 @@ def gates(update, context):
     H: Hadamard
     M: Measure
     |: Barrier
+    i: Identity
     0: Reset a qubit to |0> state
     CX,o: Controlled NOT (target: CX, control: o; the 'o' character has to be in the sabe index as the 'C' in its corresponding line)
+    
+    About quantum logic gates: https://en.wikipedia.org/wiki/Quantum_logic_gate
     """    
     context.bot.send_message(chat_id=update.effective_chat.id, text=message)
 
