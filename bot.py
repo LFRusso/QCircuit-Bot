@@ -5,6 +5,15 @@ import os
 import numpy as np
 
 
+def parse_result(count):
+    message=[]
+    for state in count.keys():
+        message.append(f"P(|{state}>)={round(count[state]/100,2)}")
+    message = '\n'.join(message)
+
+    return message
+
+
 def start(update, context):
     message = "Hello, @{}! Type /help for help.".format(update.effective_user.username)
     context.bot.send_message(chat_id=update.effective_chat.id, text=message)
@@ -23,7 +32,6 @@ def help(update, context):
     """    
     context.bot.send_message(chat_id=update.effective_chat.id, text=message)
 
-
 def guide(update, context):
     message = """
     How to use this bot:
@@ -36,7 +44,6 @@ def guide(update, context):
     20 per line).
     """    
     context.bot.send_message(chat_id=update.effective_chat.id, text=message)
-
 
 def gates(update, context):
     message = """
@@ -84,17 +91,13 @@ def example(update, context):
 
     fname = "{}.png".format(update.effective_chat.id)
     count = parse_and_run(random_circ, fname)
-    message=[]
-    for state in count.keys():
-        message.append(f"√{round(count[state]/100,2)}|{state}>")
-    message = ' + '.join(message)
-
+    message = parse_result(count)
+    
     context.bot.send_message(chat_id=update.effective_chat.id, text=f"Circuit name: {random_key}")
     context.bot.send_message(chat_id=update.effective_chat.id, text=drawn_circ)
     context.bot.sendPhoto(chat_id=update.effective_chat.id, photo=open(fname, 'rb'))
-    context.bot.send_message(chat_id=update.effective_chat.id, text=f"|Ψ> = {message}")
+    context.bot.send_message(chat_id=update.effective_chat.id, text=message)
     os.remove(fname)
-
 
 # Parses and runs a quantum circuit
 def run(update, context):
@@ -119,15 +122,12 @@ def run(update, context):
 
     fname = "{}.png".format(update.effective_chat.id)
     count = parse_and_run(circ_str, fname)
-    message=[]
-    for state in count.keys():
-        message.append(f"√{round(count[state]/100,2)}|{state}>")
-    message = ' + '.join(message)
+    message = parse_result(count)
+
 
     context.bot.sendPhoto(chat_id=update.effective_chat.id, photo=open(fname, 'rb'))
-    context.bot.send_message(chat_id=update.effective_chat.id, text=f"|Ψ> = {message}")
+    context.bot.send_message(chat_id=update.effective_chat.id, text=message)
     os.remove(fname)
-
 
 def main():
     logger = logging.getLogger(__name__)
