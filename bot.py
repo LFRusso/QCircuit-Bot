@@ -86,7 +86,7 @@ def example(update, context):
     count = parse_and_run(random_circ, fname)
     message=[]
     for state in count.keys():
-        message.append(f"{round(count[state]/100,2)}|{state}>")
+        message.append(f"√{round(count[state]/100,2)}|{state}>")
     message = ' + '.join(message)
 
     context.bot.send_message(chat_id=update.effective_chat.id, text=f"Circuit name: {random_key}")
