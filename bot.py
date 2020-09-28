@@ -6,18 +6,20 @@ import numpy as np
 
 
 def start(update, context):
-    message = "Henllo @{}! Type /help for help.".format(update.effective_user.username)
+    message = "Hello, @{}! Type /help for help.".format(update.effective_user.username)
     context.bot.send_message(chat_id=update.effective_chat.id, text=message)
 
 def help(update, context):
     message = """
-        Commands: 
+    Commands: 
 
-        /help: Display commands
-        /guide: How to use this bot
-        /run: Parses and runs a quantum circuit
-        /example: Loads an example circuit
-        /gates: Displays avaliable quantum gates 
+    /help: Display commands
+    /guide: How to use this bot
+    /run: Parses and runs a quantum circuit
+    /example: Loads an example circuit
+    /gates: Displays avaliable quantum gates 
+
+    Code available at https://github.com/LFRusso/QCircuit-Bot
     """    
     context.bot.send_message(chat_id=update.effective_chat.id, text=message)
 
@@ -28,7 +30,7 @@ def guide(update, context):
 
     Use the command /run with a quantum circuit as shown in /examples
     The circuit consists of qubits, beging each delimited by a separete line, and
-    logical gates (avaliable at /gates). You can use those to perform operations on the qubits
+    logic gates (avaliable at /gates). You can use those to perform operations on the qubits
     by adding them to the corresponding qubit line. Other characters other than the gates will be 
     treated as "wires" and can be used to ident the circuit (keep in mind the limit of characters is
     20 per line).
@@ -38,22 +40,25 @@ def guide(update, context):
 
 def gates(update, context):
     message = """
-    Currently avaliable logical gates:
+    Avaliable logic gates (https://en.wikipedia.org/wiki/Quantum_logic_gate):
 
     X: NOT/Pauli-X
     Y: Pauli-Y
     Z: Pauli-Z
     H: Hadamard
     M: Measure
+    |: Barrier
+    0: Reset a qubit to |0> state
     CX,o: Controlled NOT (target: CX, control: o; the 'o' character has to be in the sabe index as the 'C' in its corresponding line)
     """    
     context.bot.send_message(chat_id=update.effective_chat.id, text=message)
 
+# Runs an example circuit
 def example(update, context):
     examples = {
         'Bell State':
-            ['_H_o__M',
-            '___CX_M'],
+            ['-H-o--M',
+             '---CX-M'],
     }
 
     random_key = np.random.choice(list(examples.keys()))
@@ -71,7 +76,7 @@ def example(update, context):
     context.bot.send_message(chat_id=update.effective_chat.id, text=f"Circuit name: {random_key}")
     context.bot.send_message(chat_id=update.effective_chat.id, text=drawn_circ)
     context.bot.sendPhoto(chat_id=update.effective_chat.id, photo=open(fname, 'rb'))
-    context.bot.send_message(chat_id=update.effective_chat.id, text=message)
+    context.bot.send_message(chat_id=update.effective_chat.id, text=f"|Ψ> = {message}")
     os.remove(fname)
 
 
@@ -104,7 +109,7 @@ def run(update, context):
     message = ' + '.join(message)
 
     context.bot.sendPhoto(chat_id=update.effective_chat.id, photo=open(fname, 'rb'))
-    context.bot.send_message(chat_id=update.effective_chat.id, text=message)
+    context.bot.send_message(chat_id=update.effective_chat.id, text=f"|Ψ> = {message}")
     os.remove(fname)
 
 

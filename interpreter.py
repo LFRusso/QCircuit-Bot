@@ -32,9 +32,17 @@ def parse_and_run(circ_str, fname):
             elif (operation=='Y'):
                 circuit.y(j)
             
+            # Set qubit to |0>
+            elif (operation=='0'):
+                circuit.reset(j)
+
             # Measure
             elif (operation=='M'):
                 circuit.measure(j, j)
+            
+            # Barrier
+            elif (operation=='|'):
+                circuit.barrier(j)
             
             # Ctrl operations
             elif (operation=='C'):
