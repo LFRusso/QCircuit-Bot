@@ -139,8 +139,8 @@ def run(update, context):
 
     for line in circ_str:
         if (len(line) != len_circ):
-            # Lines of different lenght
-            context.bot.send_message(chat_id=update.effective_chat.id, text="Lines must be the same lenght.")
+            # Lines of different length
+            context.bot.send_message(chat_id=update.effective_chat.id, text="Lines must be the same length.")
             return
 
     fname = "{}.png".format(update.effective_chat.id)

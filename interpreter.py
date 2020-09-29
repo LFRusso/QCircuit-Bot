@@ -55,7 +55,7 @@ def parse_and_run(circ_str, fname):
             elif (operation=='i'):
                 circuit.iden(j)
                 
-            # Swap (2 quibits)
+            # Swap (2 qubits)
             elif (operation=='x'):
                 swap1=j
                 swap2=-1
