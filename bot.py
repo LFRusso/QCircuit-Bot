@@ -118,9 +118,9 @@ def example(update, context):
 def run(update, context):
     circ_str = context.args
 
-    if (len(circ_str)>5):
+    if (len(circ_str)>7):
         # Too many qubits error
-        context.bot.send_message(chat_id=update.effective_chat.id, text="Too many qubits, maximum is 5.")
+        context.bot.send_message(chat_id=update.effective_chat.id, text="Too many qubits, maximum is 7.")
         return
         
     len_circ = len(circ_str[0])
