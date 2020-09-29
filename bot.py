@@ -8,7 +8,7 @@ import numpy as np
 def parse_result(count):
     message=[]
     for state in count.keys():
-        message.append(f"P(|{state}>)={round(count[state]/100,2)}")
+        message.append(f"P(|{state}〉)={round(count[state]/100,2)}")
     message = '\n'.join(message)
 
     return message
@@ -37,11 +37,7 @@ def guide(update, context):
     How to use this bot:
 
     Use the command /run with a quantum circuit as shown in /examples
-    The circuit consists of qubits, beging each delimited by a separete line, and
-    logic gates (avaliable at /gates). You can use those to perform operations on the qubits
-    by adding them to the corresponding qubit line. Other characters other than the gates will be 
-    treated as "wires" and can be used to ident the circuit (keep in mind the limit of characters is
-    20 per line).
+    The circuit consists of qubits, being each delimited by a separete line, and logic gates (avaliable at /gates). You can use those to perform operations on the qubits by adding them to the corresponding qubit line. Other characters other than the gates will be treated as "wires" and can be used to ident the circuit (keep in mind the limit of characters is 20 per line).
     """    
     context.bot.send_message(chat_id=update.effective_chat.id, text=message)
 
@@ -49,6 +45,8 @@ def gates(update, context):
     message = """
     Avaliable logic gates:
 
+
+    - Single qubit operations
     X: NOT/Pauli-X
     Y: Pauli-Y
     Z: Pauli-Z
@@ -56,8 +54,20 @@ def gates(update, context):
     M: Measure
     |: Barrier
     i: Identity
-    0: Reset a qubit to |0> state
-    CX,o: Controlled NOT (target: CX, control: o; the 'o' character has to be in the sabe index as the 'C' in its corresponding line)
+    S: S (π/2) gate
+    T: T (π/4) gate 
+    0: Reset a qubit to |0〉 state
+
+    - Two qubits operations
+    o: Control, used for the controlled operations (the 'o' character has to be in the sabe index as the 'C' on its corresponding line)
+    CX: Controlled Not (CNOT)
+    CY: Controlled Y
+    CZ: Controlled Z
+    x,x: Swap (the 'x' characters must have the sabe index on their corresponding lines)
+
+    - Three qubits operations
+    t,o,o: Toffoli (CCNOT). The 'o' characters must both have the same index as the 't' character.
+
     
     About quantum logic gates: https://en.wikipedia.org/wiki/Quantum_logic_gate
     """    
