@@ -96,6 +96,14 @@ def example(update, context):
              '0Hi|..o..i|H.M',
              '0Hi|....o.|H.M',
              '0XH|CXCXCX|HX.'],
+        'Finding multiples of 2^3/r; 7^r mod 15 = 1':
+            ['........o..o...iM',
+             'H.....ooCZH..o..M',
+             'Ho.o.......CZCZHM',
+             'X.....t..........',
+             '.CX....o.........',
+             '...CXXo..........',
+             '.......t.........'],
     }
 
 
