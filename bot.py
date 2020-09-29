@@ -81,8 +81,13 @@ def example(update, context):
         'Deutsch f(0)=1, f(1)=0':
             ['0iH|Xo-X|H-M',
              '0XH|iCXi|i-M'],
-         
+        'Deutsch-Jozsa Balanced Oracle':
+            ['HX|o...ii|XH|.M',
+             'Hi|..o..i|Hi|.M',
+             'HX|....o.|XH|.M',
+             'XH|CXCXCX|ii|..'],
     }
+
 
     random_key = np.random.choice(list(examples.keys()))
     random_circ = examples[random_key]
