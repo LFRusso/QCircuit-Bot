@@ -69,23 +69,23 @@ def example(update, context):
         'Bell State':
             ['-H-o--M',
              '---CX-M'],
-        'Deutsch f=0':
+        'Deutsch (f=0)':
             ['0iH|-|H-M',
              '0XH|-|i-M'],
-        'Deutsch f=1':
+        'Deutsch (f=1)':
             ['0iH|i|H-M',
              '0XH|X|i-M'],
-        'Deutsch f(0)=0, f(1)=1':
+        'Deutsch (f(0)=0, f(1)=1)':
             ['0iH|o-|H-M',
              '0XH|CX|i-M'],
-        'Deutsch f(0)=1, f(1)=0':
+        'Deutsch (f(0)=1, f(1)=0)':
             ['0iH|Xo-X|H-M',
              '0XH|iCXi|i-M'],
-        'Deutsch-Jozsa Balanced Oracle':
-            ['HX|o...ii|XH|.M',
-             'Hi|..o..i|Hi|.M',
-             'HX|....o.|XH|.M',
-             'XH|CXCXCX|ii|..'],
+        'Deutsch-Jozsa (Balanced Oracle)':
+            ['0Hi|o...ii|H.M',
+             '0Hi|..o..i|H.M',
+             '0Hi|....o.|H.M',
+             '0XH|CXCXCX|HX.'],
     }
 
 
