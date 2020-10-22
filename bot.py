@@ -1,4 +1,5 @@
 from telegram.ext import Updater, CommandHandler
+from telegram import InlineKeyboardButton, InlineKeyboardMarkup
 import logging
 from interpreter import *
 import os
@@ -27,10 +28,12 @@ def help(update, context):
     /run: Parses and runs a quantum circuit
     /example: Loads an example circuit
     /gates: Displays avaliable quantum gates 
+    """
 
-    Code available at https://github.com/LFRusso/QCircuit-Bot
-    """    
-    context.bot.send_message(chat_id=update.effective_chat.id, text=message)
+    link = "https://github.com/LFRusso/QCircuit-Bot"
+    keyboard = [[InlineKeyboardButton(text="GitHub Repository", url=link)]]
+    markup = InlineKeyboardMarkup(keyboard)
+    context.bot.send_message(chat_id=update.effective_chat.id, text=message, reply_markup=markup)
 
 def guide(update, context):
     message = """
@@ -38,7 +41,8 @@ def guide(update, context):
 
     Use the command /run with a quantum circuit as shown in /examples
     The circuit consists of qubits, being each delimited by a separete line, and logic gates (avaliable at /gates). You can use those to perform operations on the qubits by adding them to the corresponding qubit line. Other characters other than the gates will be treated as "wires" and can be used to ident the circuit (keep in mind the limit of characters is 20 per line).
-    """    
+    """
+
     context.bot.send_message(chat_id=update.effective_chat.id, text=message)
 
 def gates(update, context):
@@ -67,11 +71,12 @@ def gates(update, context):
 
     - Three qubits operations
     t,o,o: Toffoli (CCNOT). The 'o' characters must both have the same index as the 't' character.
+    """
 
-    
-    About quantum logic gates: https://en.wikipedia.org/wiki/Quantum_logic_gate
-    """    
-    context.bot.send_message(chat_id=update.effective_chat.id, text=message)
+    link = "https://en.wikipedia.org/wiki/Quantum_logic_gate"
+    keyboard = [[InlineKeyboardButton(text="About quantum logic gates", url=link)]]
+    markup = InlineKeyboardMarkup(keyboard)
+    context.bot.send_message(chat_id=update.effective_chat.id, text=message, reply_markup=markup)
 
 # Runs an example circuit
 def example(update, context):
